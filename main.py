@@ -65,7 +65,10 @@ def change_read():
 
     book_id = ui.get_book_id()
     new_read = ui.get_read_value()
-    store.set_book_read(book_id, new_read)
+    try:
+        store.set_book_read(book_id, new_read)
+    except:
+        print('Book not found')
     # TODO show error message if book's ID is not found.
 
 

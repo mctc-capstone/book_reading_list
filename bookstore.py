@@ -34,7 +34,10 @@ class BookStore:
             :param id the ID of the book to change the read status
             :param read True for book has been read, False otherwise
             """
+
             book = self.get_book_by_id(id)
+            if book == None:
+                raise BookError('There is no book with that id')
             book.read = read
             # TODO raise BookError if book not found. Hint: get_book_by_id returns None if book is not found.
 
