@@ -36,7 +36,10 @@ def create_menu():
 
 def add_book():
     new_book = ui.get_book_info()
-    store.add_book(new_book)
+    try:
+        store.add_book(new_book)
+    except:
+        print('Book is already in the store')
     # TODO show an error message if a book is already in the store, don't add book
 
 
