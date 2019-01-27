@@ -9,7 +9,9 @@ def gen_id():
 
 class Counter:
     # TODO add a docstring for this class to explain it's purpose
-
+    """
+        Counter class used to assist in the counting of the books. It has a function too also reset the counter.
+    """
     _counter = 0
 
     @staticmethod
@@ -26,6 +28,10 @@ class Counter:
 class Book:
 
     # TODO add a docstring for this class to explain it's purpose
+    """
+    Book class is dataclass. Holds data but not functions. Holds information of a book like id, title, author and read.
+    Has no need to contain functions and does not contain it
+    """
 
     id: int = field(default_factory=gen_id, init=False)
     title: str
