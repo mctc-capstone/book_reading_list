@@ -1,14 +1,14 @@
 from dataclasses import dataclass, field
 
-# TODO add a docstring for this module.
+# This is a class to control how the book data is stored and accessed
 
 #method to get the counter information
 def gen_id():
     return Counter.get_counter()
 
-#class to hold counter information
+
 class Counter:
-    # TODO add a docstring for this class to explain it's purpose
+    #class to hold counter information
 
     _counter = 0
     #get counter method
