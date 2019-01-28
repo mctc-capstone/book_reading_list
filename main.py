@@ -29,6 +29,7 @@ def create_menu():
     menu.add_option('4', 'Show Read Books', show_read_books)
     menu.add_option('5', 'Show All Books', show_all_books)
     menu.add_option('6', 'Change Book Read Status', change_read)
+    menu.add_option('7', 'Delete Book', delete_book)
     menu.add_option(QUIT, 'Quit', quit_program)
 
     return menu
@@ -39,6 +40,15 @@ def add_book():
     store.add_book(new_book)
     # TODO show an error message if a book is already in the store, don't add book
 
+#method to allow user to delete a book
+def delete_book():
+    try:
+        bookStore = BookStore()
+        book = input('Enter the book ID. ')
+        bookStore.delete_book()
+
+    except ValueError:
+        raise bookStore.BookError('Error: Book Not Found')
 
 def show_read_books():
     read_books = store.get_books_by_read_value(True)
