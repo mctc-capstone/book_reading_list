@@ -72,8 +72,8 @@ class BookStore:
             :param term the search term
             :returns a list of books with author or title that match the search term.
             """
-            # TODO make this case-insensitive. So 'ROWLING' is a match for a book with author = 'jk rowling'
-            return [book for book in self._books if term in book.title or term in book.author]
+            # converts search term and title and author to lowercase to make it case-insensitive
+            return [book for book in self._books if term.lower() in book.title.lower() or term in book.author.lower()]
 
 
         def get_books_by_read_value(self, read):
