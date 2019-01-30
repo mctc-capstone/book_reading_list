@@ -9,7 +9,7 @@ This application is run via main.py and displays a basic UI in the terminal used
 
 #### Add Book
 This option creates a new book object via ui.py's get_book_info() function. A title and author are asked of the user and saved to the book object.
-
+ 
 #### Search For books
 This option asks the user for a search term and creates a list of book objects via bookstore.book_search() and shows that list with ui.show_books().
 
