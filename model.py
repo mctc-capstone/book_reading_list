@@ -1,6 +1,6 @@
-from dataclasses import dataclass, field
+"""This module uses dataclasses to store information in the program"""
 
-# TODO add a docstring for this module.
+from dataclasses import dataclass, field
 
 
 def gen_id():
