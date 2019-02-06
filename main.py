@@ -1,6 +1,6 @@
 """ Program to create and manage a list of books that the user wishes to read, and books that the user has read. """
 
-from bookstore import BookStore
+from bookstore import BookStore, BookError
 from menu import Menu
 import ui
 
@@ -38,9 +38,9 @@ def add_book():
     new_book = ui.get_book_info()
     try:
         store.add_book(new_book)
-    except ValueError:
-        print ('Book already exists!')
-    # TODO show an error message if a book is already in the store, don't add book
+    except BookError:
+        print ('\nBook already exists!\n')
+
 
 
 def show_read_books():
