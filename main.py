@@ -67,9 +67,14 @@ def search_book():
 
 def change_read():
 
-    book_id = ui.get_book_id()
-    new_read = ui.get_read_value()
-    store.set_book_read(book_id, new_read)
+    try:
+        book_id = ui.get_book_id()
+        new_read = ui.get_read_value()
+
+        store.set_book_read(book_id, new_read)
+    except:
+        print('\nIt looks like that book ID doesn\'t exist here.\n')
+
     # TODO show error message if book's ID is not found.
 
 def delete_book():
