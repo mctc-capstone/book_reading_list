@@ -17,7 +17,7 @@ class BookStore:
                 if not self.exact_match(book):
                     self._books.append(book)
                 else:
-                    print('Book already exists')
+                    print('Book already exists!')
             except ValueError:
                 raise BookError
 
