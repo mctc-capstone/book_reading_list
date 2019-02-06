@@ -9,7 +9,7 @@ def gen_id():
 
 class Counter:
     # TODO add a docstring for this class to explain it's purpose
-
+    """This is used to generate the IDs(Keys)that are used as identifiers for each book """
     _counter = 0
 
     @staticmethod
@@ -26,7 +26,7 @@ class Counter:
 class Book:
 
     # TODO add a docstring for this class to explain it's purpose
-
+    """Book class for storing info about the books(title, generated ID, author, and whether the book has been read)"""
     id: int = field(default_factory=gen_id, init=False)
     title: str
     author: str
