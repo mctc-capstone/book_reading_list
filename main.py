@@ -40,7 +40,7 @@ def add_book():
         store.add_book(new_book)
     except ValueError:
         print ('Book already exists!')
-    # TODO show an error message if a book is already in the store, don't add book
+
 
 
 def show_read_books():
