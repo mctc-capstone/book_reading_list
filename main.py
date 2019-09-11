@@ -47,7 +47,7 @@ def show_unread_books():
     ui.show_books(unread_books)
 
 
-def show_all_books():
+def show_all_books(): 
     books = store.get_all_books()
     ui.show_books(books)
 
@@ -65,13 +65,14 @@ def delete_book():
     ui.message('Book Deleted')
 
 def change_read():
-
-    book_id = ui.get_book_id()
-    book = store.get_book_by_id(book_id)  
-    new_read = ui.get_read_value()     
-    book.read = new_read 
-    book.save()
-    
+    try:
+        book_id = ui.get_book_id()
+        book = store.get_book_by_id(book_id)  
+        new_read = ui.get_read_value()     
+        book.read = new_read 
+        book.save()
+    except:
+        ui.message('Book not found')
 
 def quit_program():
     ui.message('Thanks and bye!')
