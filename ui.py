@@ -29,7 +29,7 @@ def show_books(books):
     if books:
         #add a newline before and after the book is printed
         for book in books:
-            print("\n" + book +"\n")
+            print('\n',book,'\n')
     else:
         print('No books to display')
 
