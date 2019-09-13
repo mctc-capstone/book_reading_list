@@ -56,14 +56,17 @@ def search_book():
     matches = store.book_search(search_term)
     ui.show_books(matches)
 
-
+##added try catch block if error occurs when trying to change read status of book
 def change_read():
+     try:
+        book_id = ui.get_book_id()
+        book = store.get_book_by_id(book_id)  
+        new_read = ui.get_read_value()     
+        book.read = new_read 
+        book.save()
+    except:
+        ui.message('Book not found')
 
-    book_id = ui.get_book_id()
-    book = store.get_book_by_id(book_id)  
-    new_read = ui.get_read_value()     
-    book.read = new_read 
-    book.save()
     
 
 def quit_program():
