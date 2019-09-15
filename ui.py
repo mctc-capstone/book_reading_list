@@ -28,7 +28,8 @@ def show_books(books):
 
     if books:
         for book in books:
-            print(book)
+            ##this is where i added a newline before and after each book
+            print('\n',book,'\n')
     else:
         print('No books to display')
 
