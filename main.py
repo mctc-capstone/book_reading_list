@@ -33,7 +33,15 @@ def create_menu():
 
 def add_book():
     new_book = ui.get_book_info()
-    new_book.save()
+    all_books = store.get_all_books()
+    if book in all_books:
+        book_present =True
+        if book_present == True:
+            raise Exception('This book is already exist')
+        else:
+            store.add_book(new_book)
+            ui.message('New book added')
+
     
 
 def show_read_books():
@@ -63,6 +71,7 @@ def delete():
 
     except ValueError:
         raise BookError("Book doesn't exist")
+
 
 
 def change_read():
