@@ -56,6 +56,14 @@ def search_book():
     matches = store.book_search(search_term)
     ui.show_books(matches)
 
+def delete():
+    try:
+        book = ui.get_book_info()
+        store.delete(book)
+
+    except ValueError:
+        raise BookError("Book doesn't exist")
+
 
 def change_read():
 
