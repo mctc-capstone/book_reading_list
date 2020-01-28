@@ -25,13 +25,13 @@ def show_books(books):
      :param books: the book list """
 
     # TODO print a blank line before and after the book list or no books message
-
+    print('\n') #prints a blank line before the list of books
     if books:
         for book in books:
             print(book)
+        print('\n') #prints a blank line after the list of books
     else:
-        print('No books to display')
-
+        print('No books to display\n') #added a new line escape sequence at the end of the message
 
 def get_book_info():
     """ Create a new Book from title and author provided by user
