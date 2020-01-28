@@ -32,9 +32,9 @@ def create_menu():
     return menu
 
 def delete_book():
-    new_deleter = ui.get_book_id()
-    new_deleter1 = store.get_book_by_id(new_deleter)
-    new_deleter1.delete()
+    new_delete = ui.get_book_id()
+    new_delete = store.get_book_by_id(new_delete)
+    new_delete.delete()
 
 
 
