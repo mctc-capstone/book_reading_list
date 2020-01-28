@@ -30,12 +30,11 @@ class Book:
 
     def print_change(self):
         read_status = 'have' if self.read else 'have not'
-        return f'ID {self.id}, Title: {self.title}, Author: {self.author}. You {read_status} read this book.'
-
+        return f' You {read_status} read this book.Title: {self.title}, Author: {self.author}. '
 
     def __str__(self):
         read_status = 'have' if self.read else 'have not'
-        return f' You {read_status} read this book.Title: {self.title}, Author: {self.author}. '
+        return f'ID {self.id}, Title: {self.title}, Author: {self.author}. You {read_status} read this book.'
 
 
     def __repr__(self):

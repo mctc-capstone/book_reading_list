@@ -63,7 +63,8 @@ def change_read():
     book = store.get_book_by_id(book_id)  
     new_read = ui.get_read_value()     
     book.read = new_read
-    print(book.print_change())
+    new_print = book.print_change()
+    print (new_print)
     book.save()
     
 
