@@ -25,7 +25,7 @@ def show_books(books):
      :param books: the book list """
 
     # TODO print a blank line before and after the book list or no books message
-    print('\n') #prints a blank line before the list of books
+    print('\n') #prints a blank line before the list of books and Message
     if books:
         for book in books:
             print(book)
