@@ -28,7 +28,7 @@ def show_books(books):
 
     if books:
         for book in books:
-            print(book)
+            print(f'\n{book}\n')
     else:
         print('No books to display')
 
@@ -62,7 +62,8 @@ def get_read_value():
     """ Ask user to enter 'read' or 'not read'
      :returns: True if user enters 'read' or False if user enters 'not read' """
     while True:
-        response = input('Enter \'read\' if book is read or \'not read\' if book is not read: ')
+        response = input(
+            'Enter \'read\' if book is read or \'not read\' if book is not read: ')
         if response.lower() in ['read', 'not read']:
             return response.lower() == 'read'
         else:
