@@ -97,7 +97,6 @@ class BookStore:
             :param book the Book to add """
             
             insert_sql = 'INSERT INTO books (title, author, read) VALUES (?, ?, ?)'
-
             try: 
                 with sqlite3.connect(db) as con:
                     res = con.execute(insert_sql, (book.title, book.author, book.read) )
@@ -300,3 +299,5 @@ class BookStore:
 class BookError(Exception):
     """ For BookStore errors. """
     pass
+    
+    

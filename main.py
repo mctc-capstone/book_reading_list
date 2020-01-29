@@ -33,7 +33,13 @@ def create_menu():
 
 def add_book():
     new_book = ui.get_book_info()
-    new_book.save()
+    try:
+        new_book.save()
+    except:  
+        '''
+        The catch is triggered if the user enters book and author information that is already in the database.
+        '''
+        print('\nYou have already entered this book and author.\n')
     
 
 def show_read_books():
