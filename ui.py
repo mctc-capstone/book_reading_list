@@ -54,6 +54,8 @@ def get_book_id():
 
         except ValueError:
             print('Please enter a number.')
+        except UnboundLocalError:
+            id = int(input('That book does not exist\n\nPlease enter a valid ID: '))
 
 
 def get_read_value():

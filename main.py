@@ -63,8 +63,14 @@ def change_read():
 
     book_id = ui.get_book_id()
     book = store.get_book_by_id(book_id)
-    new_read = ui.get_read_value()
-    book.read = new_read
+
+    while book == None:
+        print("Sorry that book id does not exist. Please try again.")
+        book_id = ui.get_book_id()
+        book = store.get_book_by_id(book_id)  
+    new_read = ui.get_read_value()     
+    book.read = new_read 
+
     book.save()
 
 
