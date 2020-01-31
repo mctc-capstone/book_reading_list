@@ -19,6 +19,9 @@ class Book:
 
 
     def save(self):
+        """ Takes a book object and uses the Bookstore class methods to either update or add the book
+        The if statement evualted true if the book has an id and updates rather than add a duplicate."""
+        
         if self.id:
             self.bookstore._update_book(self)
         else:
