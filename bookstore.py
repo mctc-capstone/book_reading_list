@@ -190,10 +190,6 @@ class BookStore:
 
 
 
-            con.close()
-
-            return book
-
         def book_search(self, term):
             """ Searches the store for books whose author or title contain a search term. Case insensitive.
             Makes partial matches, so a search for 'row' will match a book with author='JK Rowling' and a book with title='Rowing For Dummies'
