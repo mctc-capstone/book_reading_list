@@ -72,6 +72,11 @@ def change_read():
 
     new_read = ui.get_read_value()
     book.read = new_read
+    
+    if new_read:
+        ui.message(f"\nNeat! You read {book.title} by {book.author}\n")
+    else:
+        ui.message(f"\nOoo. I wonder when you'll get to read {book.author}'s {book.title}\n")
     book.save()
 
 
