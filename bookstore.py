@@ -18,6 +18,12 @@ class Book:
 
         self.bookstore = BookStore()
 
+    def getTitle(self):
+        return self.title
+
+    def getAuthor(self):
+        return self.author
+
     def save(self):
         if self.id:
             self.bookstore._update_book(self)
@@ -111,7 +117,7 @@ class BookStore:
                 raise BookError('Book does not have ID, can\'t update')
 
             update_read_sql = 'UPDATE books SET title = ?, author = ?, read = ? WHERE rowid = ?'
-
+            
             with sqlite3.connect(db) as con:
                 updated = con.execute(
                     update_read_sql, (book.title, book.author, book.read, book.id))
@@ -189,10 +195,6 @@ class BookStore:
             return book 
 
 
-
-            con.close()
-
-            return book
 
         def book_search(self, term):
             """ Searches the store for books whose author or title contain a search term. Case insensitive.

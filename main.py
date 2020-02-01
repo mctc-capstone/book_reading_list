@@ -64,8 +64,19 @@ def change_read():
 
     book_id = ui.get_book_id()
     book = store.get_book_by_id(book_id)
+
+    while book == None:
+        ui.message("\nSorry that book id does not exist. Please try again.\n")
+        book_id = ui.get_book_id()
+        book = store.get_book_by_id(book_id) 
+
     new_read = ui.get_read_value()
     book.read = new_read
+    
+    if new_read:
+        ui.message(f"\nNeat! You read {book.title} by {book.author}\n")
+    else:
+        ui.message(f"\nOoo. I wonder when you'll get to read {book.author}'s {book.title}\n")
     book.save()
 
 
