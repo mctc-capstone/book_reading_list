@@ -76,6 +76,7 @@ def delete_book():
     ui.message('Book has been deleted')
 
 
+
 def quit_program():
     ui.message('Thanks and bye!')
 
