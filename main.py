@@ -15,7 +15,7 @@ def main():
         choice = ui.display_menu_get_choice(menu)
         action = menu.get_action(choice)
         action()
-        if choice == 'Q':
+        if choice == 'Q' or choice == 'q':
             break
 
 
@@ -27,6 +27,7 @@ def create_menu():
     menu.add_option('4', 'Show Read Books', show_read_books)
     menu.add_option('5', 'Show All Books', show_all_books)
     menu.add_option('6', 'Change Book Read Status', change_read)
+    menu.add_option('7', 'Delete a Book', delete_book)
     menu.add_option('Q', 'Quit', quit_program)
 
     return menu
@@ -63,15 +64,17 @@ def change_read():
 
     book_id = ui.get_book_id()
     book = store.get_book_by_id(book_id)
-
-    while book == None:
-        print("Sorry that book id does not exist. Please try again.")
-        book_id = ui.get_book_id()
-        book = store.get_book_by_id(book_id)  
-    new_read = ui.get_read_value()     
-    book.read = new_read 
-
+    new_read = ui.get_read_value()
+    book.read = new_read
     book.save()
+
+
+def delete_book():
+    book_id = ui.get_book_id()
+    book = store.get_book_by_id(book_id)
+    book.delete()
+    ui.message('Book has been deleted')
+
 
 
 def quit_program():
