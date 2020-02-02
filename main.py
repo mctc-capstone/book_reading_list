@@ -68,7 +68,7 @@ def change_read():
     book_id = ui.get_book_id()
     book = store.get_book_by_id(book_id)  
 
-    #If the book value is none the error message is printed.
+    #If the book value is none the error message is printed
     if book == None:  
         print('\nError: The book id is not in the database\n')
     else:
