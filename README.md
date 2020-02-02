@@ -15,3 +15,4 @@ This progam catalogs the books that the owner posses in a database, and also tra
 4. Show read books
 5. Show all books
 6. Change the book read status
+7. Delete book
