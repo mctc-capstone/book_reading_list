@@ -35,7 +35,11 @@ def create_menu():
 
 def add_book():
     new_book = ui.get_book_info()
-    new_book.save()
+    saved = new_book.save()
+    if saved:
+        ui.message(f"\nYou've added {new_book.title} to your collection \n")
+    else:
+        ui.message(f"\nYou've already added {new_book.title} to your collection\n")
 
 
 def show_read_books():

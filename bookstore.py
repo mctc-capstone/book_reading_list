@@ -18,17 +18,14 @@ class Book:
 
         self.bookstore = BookStore()
 
-    def getTitle(self):
-        return self.title
-
-    def getAuthor(self):
-        return self.author
-
     def save(self):
         if self.id:
             self.bookstore._update_book(self)
         else:
+            if self.bookstore.exact_match:
+                return False
             self.bookstore._add_book(self)
+            return True
 
     def delete(self):
         self.bookstore._delete_book(self)
