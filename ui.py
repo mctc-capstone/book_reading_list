@@ -10,7 +10,7 @@ def display_menu_get_choice(menu):
         choice = input('Enter choice? ')
 
         #Added .upper() to prevent case sensitivity.
-        #The user now can use either type Q or q to exit without issues
+        #The user now can use either type Q or q to exit without issues.
         choice = choice.upper()
         if menu.is_valid(choice):
             return choice
