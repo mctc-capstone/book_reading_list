@@ -59,7 +59,6 @@ def get_book_id():
         except ValueError:
             print('Please enter a number.')
 
-
 def get_read_value():
     """ Ask user to enter 'read' or 'not read'
      :returns: True if user enters 'read' or False if user enters 'not read' """

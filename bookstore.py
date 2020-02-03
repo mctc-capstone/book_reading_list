@@ -136,19 +136,19 @@ class BookStore:
             """ Removes book from store. Raises BookError if book not in store. 
             :param book the Book to delete """
 
-            if not book.id:
-                raise BookError('Book does not have ID')
-
             delete_sql = 'DELETE FROM books WHERE rowid = ?'
-
-            with sqlite3.connect(db) as con:
-                deleted = con.execute(delete_sql, (book.id, ) )
-                deleted_count = deleted.rowcount  # rowcount = how many rows affected by the query
-            con.close()
-
-            if deleted_count == 0:
-                raise BookError(f'Book with id {id} not found in store.')
-
+            try:
+                with sqlite3.connect(db) as con:
+                    deleted = con.execute(delete_sql, (book.id, ) )
+                    deleted_count = deleted.rowcount  # rowcount = how many rows affected by the query
+            except:
+                if not book.id:
+                    raise BookError('Book does not have ID')
+            except:           
+                if deleted_count == 0:
+                    raise BookError(f'Book with id {id} not found in store.')
+            finally
+                con.close()
 
         def delete_all_books(self):
             """ Deletes all books from database """
@@ -187,6 +187,7 @@ class BookStore:
          
             get_book_by_id_sql = 'SELECT rowid, * FROM books WHERE rowid = ?'
 
+
             con = sqlite3.connect(db) 
             con.row_factory = sqlite3.Row  # This row_factory allows access to data by row name 
             rows = con.execute(get_book_by_id_sql, (id,) )
@@ -194,12 +195,32 @@ class BookStore:
             
             if book_data:
                 book = Book(book_data['title'], book_data['author'], book_data['read'], book_data['rowid'])
+
+                   
+ 
             else: # Else is triggered if book_data is none.
                 return book_data
                     
+
             con.close()            
-            
+            book = Book 
             return book 
+
+            try:
+                con = sqlite3.connect(db) 
+                con.row_factory = sqlite3.Row  # This row_factory allows access to data by row name 
+                rows = con.execute(get_book_by_id_sql, (id,) )
+                book_data = rows.fetchone()  # Get first result 
+            
+                if book_data:
+                    book = Book(book_data['title'], book_data['author'], book_data['read'], book_data['rowid'])
+                return book
+            except UnboundLocalError:
+                print('Ah')
+            finally:            
+                con.close()            
+     
+
 
 
         def book_search(self, term):

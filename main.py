@@ -26,9 +26,20 @@ def create_menu():
     menu.add_option('4', 'Show Read Books', show_read_books)
     menu.add_option('5', 'Show All Books', show_all_books)
     menu.add_option('6', 'Change Book Read Status', change_read)
+    menu.add_option('7', 'Delete Book', delete_book)
     menu.add_option('Q', 'Quit', quit_program)
 
     return menu
+
+def delete_book():
+    new_delete = ui.get_book_id()
+    book = store.get_book_by_id(new_delete)
+    if not book:
+        book.delete()
+    else: 
+        ui.message('Book not in lib')
+
+
 
 
 def add_book():
@@ -56,11 +67,11 @@ def show_all_books():
     books = store.get_all_books()
     ui.show_books(books)
 
-
 def search_book():
     search_term = ui.ask_question('Enter search term, will match partial authors or titles.')
     matches = store.book_search(search_term)
     ui.show_books(matches)
+
 
 
 def change_read():
