@@ -22,7 +22,7 @@ class Book:
         if self.id:
             self.bookstore._update_book(self)
         else:
-            if self.bookstore.exact_match:
+            if self.bookstore.exact_match(self):
                 return False
             self.bookstore._add_book(self)
             return True
