@@ -17,7 +17,7 @@ class Book:
 
         self.bookstore = BookStore()
 
-
+    # Save function below updates data for an existing book in the list or adds a new book to the reading list
     def save(self):
         if self.id:
             self.bookstore._update_book(self)
