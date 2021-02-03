@@ -17,7 +17,8 @@ class Book:
 
         self.bookstore = BookStore()
 
-
+    """If the book's ID is in the database, call the _update_book function of the Bookstore class
+    to update that specific book object. If the ID doesn't exist yet, add the book to the book store."""
     def save(self):
         if self.id:
             self.bookstore._update_book(self)
