@@ -190,13 +190,17 @@ class BookStore:
             con.row_factory = sqlite3.Row  # This row_factory allows access to data by row name 
             rows = con.execute(get_book_by_id_sql, (id,) )
             book_data = rows.fetchone()  # Get first result 
+            con.close()    
             
             if book_data:
                 book = Book(book_data['title'], book_data['author'], book_data['read'], book_data['rowid'])
+                return book 
+            else:
+                return None
                     
-            con.close()            
+                    
             
-            return book 
+            
 
 
         def book_search(self, term):
