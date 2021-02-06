@@ -16,8 +16,11 @@ class Book:
         self.id = id
 
         self.bookstore = BookStore()
+    """ This saves books by ID 
+    Using the books ID it will either update the current book saved under the ID entered
+    or with the else statment it will add a new book entered in to the bookstore.
 
-
+    """
     def save(self):
         if self.id:
             self.bookstore._update_book(self)
