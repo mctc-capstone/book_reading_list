@@ -26,6 +26,7 @@ def create_menu():
     menu.add_option('4', 'Show Read Books', show_read_books)
     menu.add_option('5', 'Show All Books', show_all_books)
     menu.add_option('6', 'Change Book Read Status', change_read)
+    menu.add_option('7', 'Delete a book', delete_book)
     menu.add_option('Q', 'Quit', quit_program)
 
     return menu
@@ -34,6 +35,15 @@ def create_menu():
 def add_book():
     new_book = ui.get_book_info()
     new_book.save()
+
+def delete_book():
+    print('Which book would you like to delete?/n')
+    book_id=ui.get_book_id()
+    book = store.get_book_by_id(book_id)
+    book.delete()
+    
+
+
     
 
 def show_read_books():
