@@ -17,6 +17,9 @@ class Book:
 
         self.bookstore = BookStore()
 
+    """The save function checks if a book object has an id.
+    If the book has an id, it passes the object to the update_book function of bookstore class.
+    If the book does not have an id it passes the object to the add_book function of the bookstore"""
 
     def save(self):
         if self.id:
