@@ -43,7 +43,14 @@ def delete_book():
             book_id=ui.get_book_id()
             book = store.get_book_by_id(book_id)
             if book is not None:
-                book.delete()
+                while True:
+                    print("Would you like to delete this book:\n"+ book)
+                    verification = input("y/n ")
+                    if verification[0].lower() == 'y':
+                        book.delete()
+                    else:
+                        print('Deletion canceled.')
+                        break
                 break
             else:
                 print('\nThe book ID", book_id, " is NOT in the database\n')
