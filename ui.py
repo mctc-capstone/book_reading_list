@@ -19,7 +19,9 @@ def display_menu_get_choice(menu):
 def message(msg):
     """ Prints a message for the user
      :param msg: the message to print"""
+    print(len(msg)*'*')
     print(msg)
+    print(len(msg)*'*')
 
 
 def show_books(books):
