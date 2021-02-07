@@ -1,6 +1,6 @@
 """ Program to create and manage a list of books that the user wishes to read, and books that the user has read. """
 
-from bookstore import Book, BookStore
+from bookstore import Book, BookError, BookStore
 from menu import Menu
 import ui
 import traceback
@@ -19,7 +19,8 @@ def main():
             if choice == 'Q':
                 break
         except:
-            traceback.print_last()
+            print("\nYou have this book already.\n")
+
 
 def create_menu():
     menu = Menu()
