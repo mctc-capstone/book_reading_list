@@ -56,11 +56,18 @@ def get_book_id():
             print('Please enter a number.')
 
 
-def get_read_value():
+def get_read_value(book):   #added book parameter
     """ Ask user to enter 'read' or 'not read'
      :returns: True if user enters 'read' or False if user enters 'not read' """
     while True:
         response = input('Enter \'read\' if book is read or \'not read\' if book is not read: ')
+        
+        if response.lower()=='read':    #if book is read display confirm message
+            print('You have read the book', book.title, 'by:', book.author)
+        elif response.lower()=='not read':  #if book is not read display confirm message
+            print('You have not read the book', book.title, 'by:', book.author)
+
+
         if response.lower() in ['read', 'not read']:
             return response.lower() == 'read'
         else:
