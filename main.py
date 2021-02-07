@@ -26,6 +26,7 @@ def create_menu():
     menu.add_option('4', 'Show Read Books', show_read_books)
     menu.add_option('5', 'Show All Books', show_all_books)
     menu.add_option('6', 'Change Book Read Status', change_read)
+    menu.add_option('7', 'Delete a book', delete_book)
     menu.add_option('Q', 'Quit', quit_program)
 
     return menu
@@ -34,7 +35,31 @@ def create_menu():
 def add_book():
     new_book = ui.get_book_info()
     new_book.save()
-    
+
+def delete_book():
+    print('Which book would you like to delete?')
+    while True:
+        try:
+            book_id=ui.get_book_id()
+            book = store.get_book_by_id(book_id)
+            if book is not None:
+                while True:
+                    print("Would you like to delete this book:\n"+ book)
+                    verification = input("y/n ")
+                    if verification[0].lower() == 'y':
+                        book.delete()
+                    else:
+                        print('Deletion canceled.')
+                        break
+                break
+            else:
+                print('\nThe book ID", book_id, " is NOT in the database\n')
+        except UnboundLocalError:
+            print("Unbound Local Error has occured.","Please enter a valid ID.")
+        except:
+            print('An error occured.','Please enter a valid ID.')
+            
+
 
 def show_read_books():
     read_books = store.get_books_by_read_value(True)
