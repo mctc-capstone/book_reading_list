@@ -48,6 +48,7 @@ def delete_book():
                 verification = input("y/n ")
                 if verification[0].lower() == 'y':
                     book.delete()
+                    break
                 else:
                     print('Deletion canceled.')
                     break
