@@ -190,12 +190,12 @@ class BookStore:
             rows = con.execute(get_book_by_id_sql, (id,) )
             book_data = rows.fetchone()  # Get first result 
             
-            if book_data:
-                book = Book(book_data['title'], book_data['author'], book_data['read'], book_data['rowid'])
-                    
-            con.close()            
-            
-            return book 
+            if book_data is None:   #if book is not found return None
+                return None
+            else:   #else return the book    
+                book = Book(book_data['title'], book_data['author'], book_data['read'], book_data['rowid'])       
+                con.close()            
+                return book 
 
 
         def book_search(self, term):
