@@ -31,6 +31,7 @@ def create_menu():
     menu.add_option('5', 'Show All Books', show_all_books)
     menu.add_option('6', 'Change Book Read Status', change_read)
     menu.add_option('7', 'Delete a book', delete_book)
+    menu.add_option('8','Display the number of books', number_of_books)
     menu.add_option('Q', 'Quit', quit_program)
 
     return menu
@@ -96,7 +97,10 @@ def change_read():
         book.save()
     else:
         print('\nThe book ID you have entered is NOT in the database\n')
-    
+
+def number_of_books():
+    books = store.get_all_books() # gets all the books in the database
+    ui.number_of_books(books) # pass the books number_of_books function in the ui module.
 
 def quit_program():
     ui.message('Thank you for using this program and we hope to see you again!!')

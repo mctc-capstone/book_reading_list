@@ -85,3 +85,10 @@ def ask_question(question):
     :param: the question to ask
     :returns: user's response """
     return input(question)
+
+# This counts the number of books in the database
+def number_of_books(books):
+    numBook = 0
+    for book in books:
+        numBook += 1 # counts the number of books
+    print(f'\nYou have {numBook} books in the database.\n')
