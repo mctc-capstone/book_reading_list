@@ -23,6 +23,8 @@ def main():
 
 
 def create_menu():
+    """ contains menu list
+     :returns: menu options"""
     menu = Menu()
     menu.add_option('1', 'Add Book', add_book)
     menu.add_option('2', 'Search For Book', search_book)
@@ -36,12 +38,13 @@ def create_menu():
 
     return menu
 
-
 def add_book():
+    """ adds new book to the list and saves"""
     new_book = ui.get_book_info()
     new_book.save()
 
 def delete_book():
+    """ deletes books if in the database or displays error messages"""
     print('Which book would you like to delete?')
     while True:
         try:
@@ -68,32 +71,30 @@ def delete_book():
             print("Unbound Local Error has occured.","Please enter a valid ID.")
         except:
             print('An error occured.','Please enter a valid ID.')
-            
-
 
 def show_read_books():
+    """ lists books that are read"""
     read_books = store.get_books_by_read_value(True)
     ui.show_books(read_books)
 
-
 def show_unread_books():
+    """ lists unread books"""
     unread_books = store.get_books_by_read_value(False)
     ui.show_books(unread_books)
 
-
 def show_all_books():
+    """ gets all the books in the database then displays it"""
     books = store.get_all_books()
     ui.show_books(books)
 
-
 def search_book():
+    """ searches book in the database then displays it"""
     search_term = ui.ask_question('Enter search term, will match partial authors or titles.')
     matches = store.book_search(search_term)
     ui.show_books(matches)
 
-
 def change_read():
-
+    """ gets book if then changes it to read or unread then saves it"""
     book_id = ui.get_book_id()  #gets book id
     book = store.get_book_by_id(book_id)    #checks to see if ID in the database
     if book is not None:
@@ -104,10 +105,12 @@ def change_read():
         print('\nThe book ID you have entered is NOT in the database\n')
 
 def number_of_books():
+    """gets all the books in the database then passes number of books """
     books = store.get_all_books() # gets all the books in the database
     ui.number_of_books(books) # pass the books number_of_books function in the ui module.
 
 def quit_program():
+    """passes message"""
     ui.message('Thank you for using this program and we hope to see you again!!')
 
 

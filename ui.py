@@ -15,7 +15,6 @@ def display_menu_get_choice(menu):
         else:
             print('Not a valid choice, try again.')
 
-
 def message(msg):
     """ Prints a message for the user
      :param msg: the message to print"""
@@ -23,12 +22,9 @@ def message(msg):
     print(msg)
     print(len(msg)*'*')
 
-
 def show_books(books):
     """ Display all books in a list of Books, or a 'No books' message
      :param books: the book list """
-
-    # TODO print a blank line before and after the book list or no books message
 
     if books:
         print()
@@ -38,14 +34,12 @@ def show_books(books):
     else:
         print('\nNo books to display\n')
 
-
 def get_book_info():
     """ Create a new Book from title and author provided by user
      :returns: a Book created from the title and author. """
     title = input('Enter book title: ')
     author = input('Enter book author: ')
     return Book(title, author)
-
 
 def get_book_id():
     """ Ask for ID, validate to ensure is positive integer
@@ -60,7 +54,6 @@ def get_book_id():
 
         except ValueError:
             print('Please enter a number.')
-
 
 def get_read_value(book):   #added book parameter
     """ Ask user to enter 'read' or 'not read'
@@ -79,7 +72,6 @@ def get_read_value(book):   #added book parameter
         else:
             print('Type \'read\' or \'not read\'')
 
-
 def ask_question(question):
     """ Ask user question
     :param: the question to ask
@@ -88,6 +80,9 @@ def ask_question(question):
 
 # This counts the number of books in the database
 def number_of_books(books):
+    """ counts the number of books
+    :param: number of books
+    :displays: number of books in the database """
     numBook = 0
     for book in books:
         numBook += 1 # counts the number of books

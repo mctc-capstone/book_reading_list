@@ -61,7 +61,6 @@ class Book:
         return hash((self.id, self.title, self.author, self.read))
 
 
-
 class BookStore:
 
     """ Singleton class to hold and manage a list of Books. All Bookstore objects created are the same object.
@@ -86,13 +85,8 @@ class BookStore:
         # calling _add_book and _update_book but it would go against the intentions of the program to do so. 
         # _add_book and _update book are called by the Book class's save method, and are used to create or update a book's info in the database.
         # When the program works with books, to save or update, a new Book object is created and the save method is called, for example
-        # book = Book('Author', 'Title')
-        # book.save()
-        # Or to modify
-        # book.title = 'Another Author'
-        # book.save()
+        # book = Book('Author', 'Title') book.save() Or to modify book.title = 'Another Author'book.save()
         # Operations on the database where the user may not have a book object, have 'public' names like delete_all_books() or get_book_by_id
-
 
         def _add_book(self, book):
             """ Adds book to store. 
@@ -132,7 +126,6 @@ class BookStore:
             if rows_modfied == 0:
                 raise BookError(f'Book with ID {book.id} not found')
 
-            
         def _delete_book(self, book):
             """ Removes book from store. Raises BookError if book not in store. 
             :param book the Book to delete """
@@ -150,7 +143,6 @@ class BookStore:
             if deleted_count == 0:
                 raise BookError(f'Book with ID {id} not found in store.')
 
-
         def delete_all_books(self):
             """ Deletes all books from database """
 
@@ -161,8 +153,6 @@ class BookStore:
 
             con.close()
            
-
-
         def exact_match(self, search_book):
             """ Searches bookstore for a book with exact same title and author. Not case sensitive.
              :param search_book: the book to search for
@@ -178,7 +168,6 @@ class BookStore:
             con.close() 
 
             return found
-
 
         def get_book_by_id(self, id):
             """ Searches list for Book with given ID,
@@ -199,7 +188,6 @@ class BookStore:
                 book = Book(book_data['title'], book_data['author'], book_data['read'], book_data['rowid'])       
                 con.close()            
                 return book 
-
 
         def book_search(self, term):
             """ Searches the store for books whose author or title contain a search term. Case insensitive.
@@ -224,7 +212,6 @@ class BookStore:
             
             return books
 
-
         def get_books_by_read_value(self, read):
             """ Get a list of books that have been read, or list of books that have not been read.
             :param read True to find all books that have been read, False to find all books that have not been read
@@ -247,7 +234,6 @@ class BookStore:
             
             return books
 
-
         def get_all_books(self):
             """ :returns entire book list """
     
@@ -266,7 +252,6 @@ class BookStore:
             
             return books
 
-
         def book_count(self):
             """ :returns the number of books in the store """
             
@@ -280,7 +265,6 @@ class BookStore:
                 
             return total
 
-
     def __new__(cls):
         """ The __new__ magic method handles object creation. (Compare to __init__ which initializes an object.) 
         If there's already a Bookstore instance, return that. If not, then create a new one
@@ -290,14 +274,11 @@ class BookStore:
             BookStore.instance = BookStore.__BookStore()
         return BookStore.instance
 
-
     def __getattr__(self, name):
         return getattr(self.instance, name)
 
-
     def __setattr__(self, name, value):
         return setattr(self.instance, name, value)
-
 
 
 class BookError(Exception):
