@@ -16,11 +16,9 @@ class Book:
         self.id = id
 
         self.bookstore = BookStore()
-    """ This saves books to the book store  
-    When the book ID is called the bookstore will be called and the module _update_book will be called.
-    This will allow the user to update the current book information that is saved in the bookstore.py. 
-    If the book ID is not stored in the bookstore this will call the _add_book module that
-    is stored in the bookstore. This module will allow the user to create and add a new book to the bookstore.
+    """ This saves books by ID 
+    Using the books ID it will either update the current book saved under the ID entered
+    or with the else statment it will add a new book entered in to the bookstore.
 
     """
     def save(self):
@@ -197,6 +195,8 @@ class BookStore:
             
             if book_data:
                 book = Book(book_data['title'], book_data['author'], book_data['read'], book_data['rowid'])
+            else:
+                book = None
                     
             con.close()            
             
