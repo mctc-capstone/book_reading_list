@@ -37,23 +37,27 @@ def add_book():
     new_book.save()
 
 def delete_book():
-    print('Which book would you like to delete?')
+    ui.message('Which book would you like to delete?')
     while True:
         try:
-            book_id=ui.get_book_id()
+            book_id = ui.get_book_id()
             book = store.get_book_by_id(book_id)
             if book is not None:
-                while True:
-                    print("Would you like to delete this book:\n"+ book)
-                    verification = input("y/n ")
-                    if verification[0].lower() == 'y':
-                        book.delete()
-                    else:
-                        print('Deletion canceled.')
-                        break
-                break
+                ui.message("Would you like to delete this book:")
+                ui.message(book)
+                verification = ui.ask_question("y/n ")
+                if verification[0].lower() == 'y':
+                    book.delete()
+                    break
+                else:
+                    ui.message('Deletion canceled.')
+                    break
             else:
-                print('\nThe book ID", book_id, " is NOT in the database\n')
+                ui.message('\nThe book ID", book_id, " is NOT in the database\n')
+            getmeout = ui.ask_question('Go back to main menu? (y/n) ')
+            if getmeout[0].lower() == 'y':
+                break
+                
         except UnboundLocalError:
             print("Unbound Local Error has occured.","Please enter a valid ID.")
         except:
