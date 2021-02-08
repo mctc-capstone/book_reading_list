@@ -58,7 +58,12 @@ def delete_book():
                     print('Deletion canceled.')
                     break
             else:
-                print('\nThe book ID", book_id, " is NOT in the database\n')
+                print('\nThe book ID you entered is NOT in the database. would you like to continue?\n')
+                verification = input("y/n ")
+                if verification[0].lower() == 'y':
+                    continue
+                else:
+                    break
         except UnboundLocalError:
             print("Unbound Local Error has occured.","Please enter a valid ID.")
         except:
