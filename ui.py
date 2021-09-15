@@ -28,10 +28,15 @@ def show_books(books):
 
     if books:
         for book in books:
-            print(book)
-    else:
-        print('No books to display')
 
+            print(" ")
+            print(book)
+            print(" ")
+    else:
+        
+        print(" ")
+        print('No books to display')
+        print(" ")
 
 def get_book_info():
     """ Create a new Book from title and author provided by user
