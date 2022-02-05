@@ -5,7 +5,10 @@ def display_menu_get_choice(menu):
     """ Displays all of the menu options, checks that the user enters a valid choice and returns the choice.
      :param menu: the menu to display
      :returns: the user's choice """
+
     while True:
+       
+        
         print(menu)
         choice = input('Enter choice? ')
         if menu.is_valid(choice):
@@ -27,10 +30,26 @@ def show_books(books):
     # TODO print a blank line before and after the book list or no books message
 
     if books:
+        print()
         for book in books:
+
+            print('blankline testsing')
+            
+    
             print(book)
+
+            print('')
+            print('testing')
+           
+    
+           
+           
+            
+
     else:
+        print()
         print('No books to display')
+      
 
 
 def get_book_info():
