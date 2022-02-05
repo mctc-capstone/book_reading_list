@@ -29,6 +29,7 @@ class Book:
         self.bookstore._delete_book(self)
 
 
+
     def __str__(self):
         read_status = 'have' if self.read else 'have not'
         return f'ID {self.id}, Title: {self.title}, Author: {self.author}. You {read_status} read this book.'
@@ -135,16 +136,14 @@ class BookStore:
             try:
                 if not book.id:
                     raise BookError('Book does not have ID')
-
                 delete_sql = 'DELETE FROM books WHERE rowid = ?'
                 with sqlite3.connect(db) as con:
-                    deleted = con.execute(delete_sql, (book.id, ) )
+                    deleted = con.execute(delete_sql, (book.id, ))
                     deleted_count = deleted.rowcount  # rowcount = how many rows affected by the query
                 con.close()
             except FileNotFoundError:
                 if deleted_count == 0:
                     raise BookError(f'Book with id {id} not found in store.')
-
 
         def delete_all_books(self):
             """ Deletes all books from database """
@@ -153,7 +152,6 @@ class BookStore:
 
             with sqlite3.connect(db) as con:
                 deleted = con.execute(delete_all_sql)
-            """dnkjnfdkbkdfmknkf"""
             con.close()
 
 
