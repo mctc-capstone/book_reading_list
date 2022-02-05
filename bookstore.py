@@ -153,9 +153,9 @@ class BookStore:
 
             with sqlite3.connect(db) as con:
                 deleted = con.execute(delete_all_sql)
-
+            """dnkjnfdkbkdfmknkf"""
             con.close()
-           
+
 
 
         def exact_match(self, search_book):
