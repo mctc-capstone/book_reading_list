@@ -129,23 +129,21 @@ class BookStore:
             if rows_modfied == 0:
                 raise BookError(f'Book with id {book.id} not found')
 
-            
         def _delete_book(self, book):
             """ Removes book from store. Raises BookError if book not in store. 
             :param book the Book to delete """
+            try:
+                if not book.id:
+                    raise BookError('Book does not have ID')
 
-            if not book.id:
-                raise BookError('Book does not have ID')
-
-            delete_sql = 'DELETE FROM books WHERE rowid = ?'
-
-            with sqlite3.connect(db) as con:
-                deleted = con.execute(delete_sql, (book.id, ) )
-                deleted_count = deleted.rowcount  # rowcount = how many rows affected by the query
-            con.close()
-
-            if deleted_count == 0:
-                raise BookError(f'Book with id {id} not found in store.')
+                delete_sql = 'DELETE FROM books WHERE rowid = ?'
+                with sqlite3.connect(db) as con:
+                    deleted = con.execute(delete_sql, (book.id, ) )
+                    deleted_count = deleted.rowcount  # rowcount = how many rows affected by the query
+                con.close()
+            except FileNotFoundError:
+                if deleted_count == 0:
+                    raise BookError(f'Book with id {id} not found in store.')
 
 
         def delete_all_books(self):
