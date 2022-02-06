@@ -32,19 +32,17 @@ def show_books(books):
     if books:
         print()
         for book in books:
+            # print a blank line before and after 
 
-            print('blankline testsing')
-            
-    
-            print(book)
+            line = "-" * len(book)
 
-            print('')
-            print('testing')
+            print(f'{line}\n{book}\n {line}')
+
+            # after the book list
+
            
-    
            
-           
-            
+      
 
     else:
         print()
