@@ -13,7 +13,7 @@ class TestBookstore(TestCase):
 
 
     def setUp(self):
-        self.BS = BookStore()
+        self.bs = BookStore()
         self.clear_bookstore()
 
 
@@ -30,7 +30,7 @@ class TestBookstore(TestCase):
 
 
     def clear_bookstore(self):
-        self.BS.delete_all_books()
+        self.bs.delete_all_books()
 
 
     def test_singleton(self):
@@ -42,17 +42,17 @@ class TestBookstore(TestCase):
     def test_add_book_empty_store(self):        
         bk = Book('aa', 'aaa')
         bk.save()
-        self.assertTrue(self.BS.exact_match(bk))
-        self.assertEqual(1, self.BS.book_count())
+        self.assertTrue(self.bs.exact_match(bk))
+        self.assertEqual(1, self.bs.book_count())
 
 
     def test_add_book_store_with_books_in(self):
         self.add_test_data()
-        book_count = self.BS.book_count()
+        book_count = self.bs.book_count()
         bk = Book('aa', 'bbbbb')
         bk.save()
-        self.assertTrue(self.BS.exact_match(bk))
-        self.assertEqual(book_count + 1, self.BS.book_count())
+        self.assertTrue(self.bs.exact_match(bk))
+        self.assertEqual(book_count + 1, self.bs.book_count())
 
 
     def test_add_book_duplicate_errors(self):
@@ -73,23 +73,23 @@ class TestBookstore(TestCase):
 
     def test_get_book_by_id_found(self):
         self.add_test_data()
-        result = self.BS.get_book_by_id(self.bk1.id)
+        result = self.bs.get_book_by_id(self.bk1.id)
         self.assertEqual(result, self.bk1)
 
 
     def test_get_book_by_id_not_found(self):
         # This test fails - student should fix 
         self.add_test_data()
-        result = self.BS.get_book_by_id(-1)
+        result = self.bs.get_book_by_id(-1)
         self.assertIsNone(result)
 
 
     def test_delete_book_object(self):
         self.add_test_data()
-        count = self.BS.book_count()
+        count = self.bs.book_count()
         self.bk2.delete()
-        self.assertEqual(count - 1, self.BS.book_count())
-        self.assertFalse(self.BS.exact_match(self.bk2))
+        self.assertEqual(count - 1, self.bs.book_count())
+        self.assertFalse(self.bs.exact_match(self.bk2))
 
 
     def test_delete_book_not_in_store_errors(self):
@@ -111,19 +111,22 @@ class TestBookstore(TestCase):
         bk1.save()
         bk2.save()
 
-        self.BS.delete_all_books()
-        self.assertEqual(0, self.BS.book_count())
+        self.bs.delete_all_books()
+        self.assertEqual(0, self.bs.book_count())
 
 
     def test_delete_all_books_empty(self):
-        self.BS.delete_all_books()
-        self.assertEqual(0, self.BS.book_count())
+        self.bs.delete_all_books()
+        self.assertEqual(0, self.bs.book_count())
 
 
     def test_count_books(self):
-        self.add_test_data()
-        count = self.BS.book_count()
-        self.assertEqual(3, count)
+        self.fail('Finish this test')
+        # TODO
+        #  Create and save example books, for example, 3 books 
+        #  Call the count method to get the number of books 
+        #  Assert the count returned is the same as the number of books added 
+
 
 
     def test_set_read_book_read(self):
@@ -131,7 +134,7 @@ class TestBookstore(TestCase):
         self.bk1.read = True
         self.bk1.save()
        
-        bk1_from_store = self.BS.get_book_by_id(self.bk1.id)
+        bk1_from_store = self.bs.get_book_by_id(self.bk1.id)
         self.assertTrue(bk1_from_store.read)
 
 
@@ -140,7 +143,7 @@ class TestBookstore(TestCase):
         self.bk2.read = True 
         self.bk2.save()
         
-        bk2_from_store = self.BS.get_book_by_id(self.bk2.id)
+        bk2_from_store = self.bs.get_book_by_id(self.bk2.id)
         self.assertTrue(bk2_from_store.read)
 
 
@@ -150,7 +153,7 @@ class TestBookstore(TestCase):
         self.bk1.read = False
         self.bk1.save()
 
-        bk1_from_store = self.BS.get_book_by_id(self.bk1.id)
+        bk1_from_store = self.bs.get_book_by_id(self.bk1.id)
         self.assertFalse(bk1_from_store.read)
 
 
@@ -159,103 +162,103 @@ class TestBookstore(TestCase):
         self.bk2.read = False 
         self.bk2.save()
 
-        bk2_from_store = self.BS.get_book_by_id(self.bk2.id)
+        bk2_from_store = self.bs.get_book_by_id(self.bk2.id)
         self.assertFalse(bk2_from_store.read)
 
 
     def test_get_all_books(self):
         self.add_test_data()
-        self.assertCountEqual([self.bk1, self.bk2, self.bk3], self.BS.get_all_books())
+        self.assertCountEqual([self.bk1, self.bk2, self.bk3], self.bs.get_all_books())
 
 
     def test_is_book_in_store_present(self):
         self.add_test_data()
-        self.assertTrue(self.BS.exact_match(self.bk1))
-        self.assertTrue(self.BS.exact_match(self.bk2))
-        self.assertTrue(self.BS.exact_match(self.bk3))
+        self.assertTrue(self.bs.exact_match(self.bk1))
+        self.assertTrue(self.bs.exact_match(self.bk2))
+        self.assertTrue(self.bs.exact_match(self.bk3))
 
 
     def test_is_book_in_store_not_present(self):
         not_in_store = Book('aaaa', 'bbbb')
         self.add_test_data()
-        self.assertFalse(self.BS.exact_match(not_in_store))
+        self.assertFalse(self.bs.exact_match(not_in_store))
 
 
     def test_is_book_in_store_empty_store(self):
         self.clear_bookstore()
         not_in_store = Book('aaaa', 'bbbb')
-        self.assertFalse(self.BS.exact_match(not_in_store))
+        self.assertFalse(self.bs.exact_match(not_in_store))
 
 
     def test_search_book_author_match(self):
         self.add_test_data()
-        self.assertCountEqual([self.bk1], self.BS.book_search('Ann'))
+        self.assertCountEqual([self.bk1], self.bs.book_search('Ann'))
 
 
     def test_search_book_title_match(self):
         self.add_test_data()
-        self.assertCountEqual([self.bk1, self.bk2], self.BS.book_search('Book'))
+        self.assertCountEqual([self.bk1, self.bk2], self.bs.book_search('Book'))
 
 
     def test_search_book_not_found(self):
         self.add_test_data()
-        self.assertEqual([], self.BS.book_search('Example search not in store'))
+        self.assertEqual([], self.bs.book_search('Example search not in store'))
 
 
     def test_search_book_empty_store(self):
         self.clear_bookstore()
-        self.assertEqual([], self.BS.book_search('Example search not in store'))
+        self.assertEqual([], self.bs.book_search('Example search not in store'))
 
 
     def test_search_book_case_insensitive_title_match(self):
         self.add_test_data()
-        self.assertCountEqual([self.bk1, self.bk2], self.BS.book_search('bOoK'))
+        self.assertCountEqual([self.bk1, self.bk2], self.bs.book_search('bOoK'))
 
 
     def test_search_book_case_insensitive_author_match(self):
         self.add_test_data()
-        self.assertCountEqual([self.bk3], self.BS.book_search('cReAtOr'))
+        self.assertCountEqual([self.bk3], self.bs.book_search('cReAtOr'))
 
 
     def test_exact_match_found(self):
         self.add_test_data()
         bk = Book('Collection of words', 'Creative Creator')
-        self.assertTrue(self.BS.exact_match(bk))
+        self.assertTrue(self.bs.exact_match(bk))
 
 
     def test_exact_match_not_found_author(self):
         self.add_test_data()
         bk = Book('Collection of words', 'Someone Else')
-        self.assertFalse(self.BS.exact_match(bk))
+        self.assertFalse(self.bs.exact_match(bk))
 
 
     def test_exact_match_not_found_title(self):
         self.add_test_data()
         bk = Book('Collection of Stories', 'Creative Creator')
-        self.assertFalse(self.BS.exact_match(bk))
+        self.assertFalse(self.bs.exact_match(bk))
 
 
     def test_exact_match_not_found_title_author(self):
         self.add_test_data()
         bk = Book('Collection of Cheese', 'Beyonce')
-        self.assertFalse(self.BS.exact_match(bk))
+        self.assertFalse(self.bs.exact_match(bk))
 
 
     def test_exact_match_not_found_empty_store(self):
         bk = Book('Whatever', 'Whatever')
         self.clear_bookstore()
-        self.assertFalse(self.BS.exact_match(bk))
+        self.assertFalse(self.bs.exact_match(bk))
 
 
     def test_get_books_by_read_read(self):
         self.add_test_data()
-        read_books = self.BS.get_books_by_read_value(True)
+        read_books = self.bs.get_books_by_read_value(True)
         self.assertCountEqual([self.bk1], read_books)
 
 
     def test_get_books_by_read_unread(self):
         self.add_test_data()
-        read_books = self.BS.get_books_by_read_value(False)
+        read_books = self.bs.get_books_by_read_value(False)
         self.assertCountEqual([self.bk2, self.bk3], read_books)
 
 

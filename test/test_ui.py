@@ -17,7 +17,6 @@ class TestUI(TestCase):
         BookStore.instance = None 
 
 
-
     @patch('builtins.input', side_effect=['a'])
     @patch('builtins.print')
     def test_display_menu_get_choice(self, mock_print, mock_input):
@@ -80,6 +79,14 @@ class TestUI(TestCase):
     def test_get_read_value_unread(self, mock_input):
         self.assertFalse(ui.get_read_value())
 
+
+    def test_get_value_read_uppercase_accepted(self):
+        self.fail('Finish this test')
+        # TODO 
+        #  Add patch decorator, with side effect 'READ'
+        #  Call ui.get_read_value 
+        #  Assert this returns True to represent the book has been read 
+        
 
     @patch('builtins.input', side_effect=['not one of the options', 'pizza', '1234', 'Not', 'rea', 'read'])
     def test_get_read_value_validates(self, mock_input):
