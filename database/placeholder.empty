@@ -1,0 +1,7 @@
+The database file will be stored in the database directory, so we'd like the database directory to exist in the project.  
+
+Git ignores empty directories, and won't add them to the project repository. 
+
+This file is here so there's something in the database directory, so git will include the database directory in the repository. 
+
+This file doesn't do anything else for the project, it's not required to make the project work. 
