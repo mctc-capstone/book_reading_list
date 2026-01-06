@@ -58,11 +58,10 @@ class Book:
         return hash((self.id, self.title, self.author, self.read))
 
 
-
 class BookStore:
 
-    """ Singleton class to hold and manage a list of Books. All Bookstore objects created are the same object.
-    Provides operations to add, update, delete, and query the store. """
+    """ Singleton class to hold and manage a store of Books. All Bookstore objects created are the same object.
+    Provides operations to add, update, delete, and search the store. """
 
     instance = None
 
