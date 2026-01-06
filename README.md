@@ -1,7 +1,8 @@
 ## Book Reading List
 
-Basic python book reading list application. For practicing teamwork and GitHub collaboration. 
+Basic Python book reading list application. 
 
-Uses SQLite3 database to store data. 
+For practicing teamwork and GitHub collaboration. 
 
-Requires at least Python 3.7.
+Uses a SQLite3 database to store data. 
+
